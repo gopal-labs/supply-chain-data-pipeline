@@ -1,0 +1,22 @@
+name: 'supply_chain_pipeline'
+version: '1.0.0'
+config-version: 2
+
+profile: 'supply_chain_pipeline'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  supply_chain_pipeline:
+    staging:
+      +schema: staging
+      +materialized: view
+    marts:
+      +schema: marts
+      +materialized: table

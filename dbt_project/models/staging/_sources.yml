@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: orders_raw
+        description: >
+          Bronze-layer supply chain order data, landed by the Airflow
+          ingest -> validate -> transform -> load DAG. All columns are
+          stored as text; typing and cleaning happens in staging.
+        columns:
+          - name: order_item_id
+            description: Line-item level identifier, the grain of this table
+            tests:
+              - not_null
+          - name: batch_date
+            description: The ingestion batch date this row belongs to
+            tests:
+              - not_null
